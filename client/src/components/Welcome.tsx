@@ -2,10 +2,38 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
-import { Loader } from "./Loader";
+import { Loader } from ".";
 
-const companyCommonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white"
+const companyCommonStyles =
+  "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
+type InputProps = {
+  placeholder: string;
+  name: string;
+  type: string;
+  value: string;
+  handleChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    name: string
+  ) => void;
+};
+
+const Input: React.FC<InputProps> = ({
+  placeholder,
+  name,
+  type,
+  value,
+  handleChange,
+}) => (
+  <input
+    placeholder={placeholder}
+    type={type}
+    step="0.0001"
+    value={value}
+    onChange={(event) => handleChange(event, name)}
+    className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+  />
+);
 
 const Welcome = () => {
   const connectWallet = () => {};
@@ -15,11 +43,11 @@ const Welcome = () => {
 
     e.preventDefault();
 
-    if ( !addressTo || !amount || !keyword || !message ) {
+    if (!addressTo || !amount || !keyword || !message) {
       console.log("All fields are required");
-      return
+      return;
     }
-
+  };
 
   return (
     <div className="flex w-full justify-center items-center">
@@ -36,11 +64,9 @@ const Welcome = () => {
             type="button"
             onClick={connectWallet}
             className="w-full flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
-          > 
-            <AiFillPlayCircle className="text-white mr-2"/>
-            <p className="text-white text-base font-semibold">
-            Connect Wallet
-            </p>
+          >
+            <AiFillPlayCircle className="text-white mr-2" />
+            <p className="text-white text-base font-semibold">Connect Wallet</p>
           </button>
 
           <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
@@ -66,7 +92,7 @@ const Welcome = () => {
             <div className="flex justify-between flex-col w-full h-full">
               <div className="flex justify-between items-start">
                 <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
-                <SiEthereum fontSize={21} color="#fff" />
+                  <SiEthereum fontSize={21} color="#fff" />
                 </div>
                 <BsInfoCircle fontSize={17} color="#fff" />
               </div>
@@ -82,13 +108,48 @@ const Welcome = () => {
           </div>
 
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-            <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange}/>
+            <Input
+              placeholder="Address To"
+              name="addressTo"
+              type="text"
+              handleChange={handleChange}
+              value={""}
+            />
+            <Input
+              placeholder="Amount in ETH"
+              name="amount"
+              type="number"
+              handleChange={handleChange}
+              value={""}
+            />
+            <Input
+              placeholder="Keyword (Gif)"
+              name="keyword"
+              type="text"
+              handleChange={handleChange}
+              value={""}
+            />
+            <Input
+              placeholder="Message to the receiver"
+              name="message"
+              type="text"
+              handleChange={handleChange}
+              value={""}
+            />
+            <div className="h-[1px] w-full bg-gray-400 my-2"></div>
 
+            {false ? (
+              <Loader />
+            ) : (
+              <button
+                type="button"
+                onClick={handleChange}
+                className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#3d4f7c]"
+              >
+                Send now
+              </button>
+            )}
           </div>
-
-
-
-
         </div>
       </div>
     </div>
