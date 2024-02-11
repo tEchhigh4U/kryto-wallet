@@ -1,5 +1,5 @@
 {
-  "name": "smart_contrat",
+  "name": "smart_contract",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "dotenv": "^16.4.2",
+    "hardhat": "^2.19.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "ethers": "^6.11.0",
     "ts-node": "^10.9.2"
   }
 }
